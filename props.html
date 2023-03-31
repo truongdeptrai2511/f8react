@@ -158,11 +158,16 @@
                         desc = "Knowleage"
                         published = "23-05"
                     />
-                    <CousreItem
-                        title = "HTML CSS Pro"
-                        image_url = "https://files.fullstack.edu.vn/f8-prod/courses/15/62f13d2424a47.png"
-                        icon_url = "https://files.fullstack.edu.vn/f8-prod/courses/15/62385d6c63dfa.png"
-                    />
+                    {courses.map(course => {
+                        return (
+                            <CousreItem
+                                key={course.id}
+                                title={course.title}
+                                image_url={course.image_url}
+                                icon_url={course.icon_url}  
+                            />
+                        )   
+                    })}
                 </div>
             )
         }
