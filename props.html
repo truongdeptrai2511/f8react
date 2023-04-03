@@ -115,16 +115,18 @@
     }
   ]
         // CousreItem
-        function CousreItem({
-            title,
-            image_url,
-            icon_url,
-        }){
+        // UI Component
+        function CousreItem({course,onClick}){
             return (
                 <div className="course-item">
-                    <img src={image_url} alt={title}/>    
-                    <h1 className="course-title">{title}</h1>
-                    <img src={icon_url} alt={title}/>
+                    <img src={course.image_url} alt={course.title}/>    
+                    <h1
+                        onClick ={()=>onClick(course)}>
+                        {course.title}
+                    </h1>
+                    <img src={course.icon_url} alt={course.title}/>
+                    <p>{course.description}</p>
+                    <p>{course.students_count}</p>
                 </div>
             )
         }
@@ -148,8 +150,12 @@
             )
         }
         // App.js
+        // Container Component
         function App() {
-            
+            //usecallback
+            const handleClick = (course) => {
+                console.log(course.title);
+            }
             return (
                 <div id="wrapper">
                     <PostItem
@@ -162,9 +168,8 @@
                         return (
                             <CousreItem
                                 key={course.id}
-                                title={course.title}
-                                image_url={course.image_url}
-                                icon_url={course.icon_url}  
+                                course = {course}
+                                onClick={handleClick}
                             />
                         )   
                     })}
